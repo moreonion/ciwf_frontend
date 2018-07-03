@@ -1,0 +1,37 @@
+{
+  "name": "ciwf_assets",
+  "version": "1.0.0",
+  "description": "Generating assests for ciwf_formtool and ciwf_admin",
+  "repository": "https://gitlab.moreonion.com/devmon/ciwf_assets/",
+  "author": "more onion",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "prod": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "watch": "webpack --watch --mode development"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.3.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "imports-loader": "^0.8.0",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.8.3",
+    "postcss-loader": "^2.1.4",
+    "sass-loader": "^7.0.1",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.15"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.0",
+    "iframe-resizer": "^3.6.1",
+    "jquery": "^3.3.1",
+    "mo-cookiebar": "https://github.com/moreonion/cookiebar",
+    "parsleyjs": "^2.8.1",
+    "popper.js": "^1.14.3",
+    "timeago": "^1.6.3"
+  }
+}

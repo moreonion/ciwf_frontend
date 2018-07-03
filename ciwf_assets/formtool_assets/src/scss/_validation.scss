@@ -1,0 +1,58 @@
+$error-color: #A94442;
+$input-bg-color: white;
+
+.has-error {
+  .form-control {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  ul, span.validateicon {
+    display: block;
+    color: white;
+    font-weight: bold;
+    border: 1px solid $error-color;
+    border-top-width: 0px;
+    border-radius: 6px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    padding: 6px 16px;
+    background-color: $error-color;
+  }
+  span.validateicon {
+    img { display: none }
+  }
+  ul {
+    li {
+      list-style: none;
+    }
+  }
+}
+.has-success {
+  span.validateicon {
+    img { display: none }
+  }
+}
+
+// validation markers for all but select
+input:not([type]), input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"],
+input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"],
+input[type="time"], input[type="url"], input[type="color"] {
+  .form-group & {
+    padding-right: 2.75em;
+  }
+
+  .has-error & {
+    background: url("../images/validation_x.png") right center $input-bg-color no-repeat;
+
+    #supportForm & { // eci-tool
+      background: url("/images/validation_x.png") right center $input-bg-color no-repeat;
+    }
+  }
+  .has-success & {
+    background: url("../images/validation_tick.png") right center $input-bg-color no-repeat;
+
+    #supportForm & { // eci-tool
+      background: url("/images/validation_tick.png") right center $input-bg-color no-repeat;
+    }
+  }
+}

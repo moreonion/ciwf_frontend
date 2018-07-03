@@ -1,0 +1,134 @@
+{% macro render_field(field) %}
+{# will be ignored for testing purposes, please don't change #}
+<div class="form-group {{ 'has-error' if field.errors }}">
+
+  {%- if field.type == "BooleanField" %}
+  <div class="form-check">
+    {{ field(class='form-check-input') }}
+    {{ field.label(class='form-check-label') }}
+  </div>
+
+  {%- elif field.type == "OptinField" %}
+  <div class="optin-field" id="{{ field.label.field_id }}-wrapper">
+    <label for="{{ field.label.field_id }}" class="form-check-label">{{ field.label.text }}</label>
+    {% for subfield in field %}
+    <div class="form-check">
+      {{ subfield(**{
+        'class': 'form-check-input',
+        'required': field.flags.required,
+        'data-parsley-errors-container': '#' + field.id + '-errors'
+      }) }}
+      {{ subfield.label(class='form-check-label') }}
+      {%- if subfield.text %}
+      <div id="text-{{ subfield.id }}" class="collapse optin-field-text optin-field-text-{{ subfield.data }}">
+        {{ subfield.text }}
+      </div>
+      {%- endif %}
+    </div>
+    {% endfor %}
+    <div id="{{ field.id }}-errors">
+    </div>
+  </div>
+
+  {%- elif field.type == "SelectField" %}
+  {{ field.label }}
+  {{ field(class='form-control form-control-lg', required=field.flags.required) }}
+
+  {%- else %}
+  <label for="{{ field.label.field_id }}">{{ field.label.text }}</label>
+  <input type="{{ field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id }}" class="form-control form-control-lg" value="{{ field.data if field.data }}"{{ ' pattern="^[^@<>%&\\\/\d]*$"'|safe if field.flags.nomail }}{{ " required" if field.flags.required }}>
+  {%- endif -%}
+
+  {{ render_field_errors(field) }}
+</div>
+{%- endmacro %}
+
+{% macro render_button(field) %}
+{# fake form rendering for testing purposes #}
+<input id="csrf_token" name="csrf_token" type="hidden" value="IjFjNzg1ZjI3NDI0YTFlOGFjNmVkYmZlNmZhMWE4OTg5ODYwODJiOTIi.Dh0CzA.jPlM3x7MOHdrquyQEDsUWNlaiAw">
+            <input id="honey_trap" name="honey_trap" type="hidden" value="">
+            
+<div class="form-group ">
+  <label for="salutation">Salutation</label>
+  <select class="form-control form-control-lg" id="salutation" name="salutation"><option value="Mr.">Mr.</option><option value="Ms.">Ms.</option><option value="Mx.">Mx.</option></select>
+  
+</div>
+            
+            
+<div class="form-group ">
+  <label for="first_name">First name</label>
+  <input type="text" name="first_name" id="first_name" class="form-control form-control-lg" value="" pattern="^[^@<>%&\\/\d]*$" required>
+  
+</div>
+            
+            
+<div class="form-group ">
+  <label for="last_name">Last name</label>
+  <input type="text" name="last_name" id="last_name" class="form-control form-control-lg" value="" pattern="^[^@<>%&\\/\d]*$" required>
+  
+</div>
+            
+<div class="form-group ">
+  <label for="email">Email</label>
+  <input type="text" name="email" id="email" class="form-control form-control-lg" value="" required>
+  
+</div>
+            
+            
+<div class="form-group ">
+  <div class="optin-field" id="newsletter-wrapper">
+    <label for="newsletter" class="form-check-label">Tick to receive email updates from Compassion in World Farming</label>
+    
+    <div class="form-check">
+      <input class="form-check-input" data-parsley-errors-container="#newsletter-errors" id="newsletter-0" name="newsletter" required type="radio" value="no">
+      <label class="form-check-label" for="newsletter-0">No, thanks</label>
+      <div id="text-newsletter-0" class="collapse optin-field-text optin-field-text-no">
+        This is a no explanation.
+      </div>
+    </div>
+    
+    <div class="form-check">
+      <input class="form-check-input" data-parsley-errors-container="#newsletter-errors" id="newsletter-1" name="newsletter" required type="radio" value="yes">
+      <label class="form-check-label" for="newsletter-1">Yes, please</label>
+      <div id="text-newsletter-1" class="collapse optin-field-text optin-field-text-yes">
+        This is a yes explanation.
+      </div>
+    </div>
+    
+    <div id="newsletter-errors">
+    </div>
+  </div>
+  
+</div>
+            
+
+  <input class="btn btn-block btn-lg btn-primary btn-danger" id="button" name="button" type="submit" value="Stay connected">
+{%- endmacro %}
+
+{% macro render_field_errors(field) %}
+  {% if field.errors %}
+    <ul>
+    {% for error in field.errors  %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{%- endmacro %}
+
+{% macro render_switcher(current, translations) %}
+{# fake language swither rendering for testing purposes #}
+     
+<div class="dropdown">
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="language-switcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    United Kingdom
+  </button>
+  <div class="dropdown-menu" aria-labelledby="language-switcher">
+    
+    
+      <a class="dropdown-item" href="/de-AT/test">
+        Österreich
+      </a>
+    
+  </div>
+</div>
+{%- endmacro %}

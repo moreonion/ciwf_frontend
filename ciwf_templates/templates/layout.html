@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{%- set lang = action.language|truncate(2, True, '',0)|default('en') %}
+<html lang="{{ lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ action.metadata.description }}">
+    <meta name="author" content="{{ action.metadata.author }}">
+    <link rel="icon" href="{{ assets_url }}/non-existing/favicon.ico">
+
+    <title>{% block title %}{{ action.metadata.title }} – CIWF{% endblock %}</title>
+
+    <!-- Compiled styles -->
+    <link href="{{ assets_url }}/ciwf_formtool.css" rel="stylesheet">
+
+    {% block opengraph %}{% endblock %}
+    {% block formtool_settings %}
+    <script type="text/javascript" charset="utf-8">
+    (function () {
+      Formtool = {
+        'settings': {
+          'uuid': '{{ socialproof_uuid }}',
+          'targets': {{ action.counter.targets|default([100,1000]) if action.counter }},
+          'logcrm': {
+            'base_url': "{{ action.logcrm['base_url'] }}",
+            'endpoints': {
+              'socialproof': '{{ action.logcrm.endpoints.socialproof }}'
+            },
+            'keys': {
+              'socialproof': {
+                'pk': '{{ action.logcrm["keys"].socialproof.pk }}'
+              }
+            }
+          }
+        }
+      };
+    }())
+    </script>
+    {% endblock %}
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-3">
+      <div class="container">
+
+        <a href="#" class="navbar-brand"><img src="{{ assets_url }}/images/cageage-rabbit-horizontal.jpg" alt="{{ _("End the Cage Logo") }}"></a>
+        <a class="navbar-brand" href="#">{{ _("Your Logo") }}</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" aria-label="{{ _("Toggle navigation") }}">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- </div> -->
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#about">{{ _("About") }}</a>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div class="container">
+      <noscript>
+        <div id="no-js-warning" class="alert alert-danger">
+          {{ _("In order to use this page please make sure you have JavaScript enabled.") }}
+        </div>
+      </noscript>
+
+      <!-- content -->
+      {% block body %}{% endblock %}
+
+    </div><!--/.container-->
+
+    {%- if cookie_warning %}
+    <div id="cookiebar">
+      <div class="container">
+        {{ _("This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies.") }}
+        <a class="cookie-close" href="#">{{ _("OK, got it!") }}</a>
+      </div>
+    </div>
+    {% endif %}
+
+
+    <!-- Compiled JavaScript -->
+    <script src="{{ assets_url }}/ciwf_formtool.js"></script>
+
+    <!-- Set language for validation error messages -->
+    {%- if lang in ['ga', 'mt'] %}
+      {%- set lang = 'en' %}
+    {% endif %}
+    <script>
+      if (typeof(Parsley) !== 'undefined') {
+        Parsley.setLocale('{{ lang }}')
+      }
+    </script>
+
+  </body>
+</html>

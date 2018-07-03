@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}Thank you – CIWF{% endblock %}
+
+{% block body %}
+      <div class="col-12 col-md-8 offset-md-2 mt-3">
+        <h1 class="text-center">{{ action.iframe.heading }}</h1>
+        <hr />
+        <div id="hide-on-ty">
+          {{ action.iframe.step1|safe }}
+        </div>
+        <div id="show-on-ty">
+          {{ action.iframe.step2|safe }}
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-12">
+          <div class="embed-responsive">
+            <iframe id="eci" class="embed-responsive-item position-static" name="eci" src="{{ iframe_url }}"></iframe>
+          </div>
+        </div>
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; End the Cage</p>
+      </footer>
+{% endblock body %}

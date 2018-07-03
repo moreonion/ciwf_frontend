@@ -1,0 +1,68 @@
+@import "bootstrap";
+@import "flags";
+@import "validation";
+
+// ==================================================================
+// custom styles
+// ==================================================================
+
+// ---------- navbar ------------------------------------------------
+
+.navbar-brand {
+  img {
+    max-height: $navbar-brand-height;
+    width: auto;
+    background-color: white;
+    padding: 0 10px;
+    margin: -$navbar-brand-padding-y 0;
+  }
+}
+
+// ---------- footer ------------------------------------------------
+
+footer {
+  margin: $line-height-base 0;
+
+  .nav-pills li {
+    float: none;
+    display: inline-block;
+  }
+}
+
+// ---------- recent supporters -------------------------------------
+
+#supporters {
+  margin: 5rem 0 1rem 0;
+}
+ul.recent-supporters {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li.supporter {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #eee;
+    &:first-of-type {
+      border-top: 1px solid #eee;
+    }
+  }
+  .name {
+    font-weight: bold;
+  }
+  .time {
+    font-style: italic;
+  }
+}
+
+// ---------- cookie bar --------------------------------------------
+
+#cookiebar {
+  background: #eee;
+  padding: 1em;
+  display: none;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}

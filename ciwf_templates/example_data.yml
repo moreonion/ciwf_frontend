@@ -1,0 +1,116 @@
+---
+assets_url: '/var/code/flask/ciwf/ciwf_templates/assets'
+socialproof_uuid: ce73584f-0e03-466d-b8ee-20c125574bcf
+cookie_warning: on
+cookie:
+  warning: 'This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies.'
+  ok: 'OK! Got it!'
+action:
+  name: "test"
+  language: 'en-UK'
+  uuid: 62bbfab6-a44c-4f9d-862b-cc77785f4cb6
+  metadata:
+    title: "CIWF"
+    description: "Description"
+    author: "Author"
+  logcrm:
+    base_url: https://logcrm.more-onion.com
+    endpoints:
+      socialproof: "/socialproof/"
+      events: "/events/"
+    keys:
+      socialproof:
+        sk: ''
+        pk: ''
+      events:
+        sk: ''
+        pk: ''
+  _form:
+    fields:
+      salutation:
+        type: select
+        label: 'Salutation'
+        choices: [ Mr, Mrs, Ms ]
+      title:
+        type: string
+        label: 'Title'
+        validations: [no-email]
+      first_name:
+        type: string
+        label: 'First name'
+        validations: [required, no-email]
+      middle_name:
+        type: string
+        label: 'Middle name'
+        validations: [no-email]
+      last_name:
+        type: string
+        label: 'Last name'
+        validations: [required, no-email]
+      email:
+        type: email
+        validations: [required, email]
+      newsletter:
+        type: optin
+        label: Stay in touch via email!
+        choices:
+          'yes':
+            label: Yes, send me updates
+          'no':
+            label: No, thanks
+            text: Are you sure? You will never hear from us again.
+      button:
+        type: submit
+        label: 'Join the movement now!'
+  counter:
+    title: "Join the movement!"
+    description: "[[count]] have joined the movement already"
+  share:
+    text: "It's time to decide. End the cage!"
+    email: "Hi!\n\nI just took action. You should too!\n\nSign here:\n"
+    url: "http://share.url"
+    image_url: "http://share.image.url"
+  supporters:
+    title: "Recent supporters"
+  content:
+    heading: "End the cage"
+    lead: "This is an example landing page to show how the action pages could look like."
+    main: >
+        <h2>Here is some copy</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
+        ornare mi. Nam congue et erat in posuere. Donec ornare elit libero,
+        non egestas turpis sodales eget. Nunc a nisi risus. Aenean ultrices
+        sodales ex, quis convallis elit venenatis at. Sed auctor felis vel
+        dapibus congue.</p><p>Morbi auctor non sapien in posuere. Aliquam
+        ultrices, velit sit amet condimentum placerat, sapien orci tincidunt
+        mi, sit amet sagittis arcu nisl non ante. Quisque fringilla nulla
+        vitae fringilla porttitor. Duis eget metus vel diam commodo
+        scelerisque. Nunc ullamcorper consequat mi. Sed varius turpis vel
+        tincidunt eleifend. Class aptent taciti sociosqu ad litora torquent
+        per conubia nostra, per inceptos himenaeos.</p>
+  iframe:
+    heading: "End the cage"
+    step1: >
+        <h2>ECI form</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
+        ornare mi. Nam congue et erat in posuere. Donec ornare elit libero,
+        non egestas turpis sodales eget. Nunc a nisi risus. Aenean ultrices
+        sodales ex, quis convallis elit venenatis at. Sed auctor felis vel
+        dapibus congue.</p>
+    step2: >
+        <h2>Thank you step of the ECI</h2>
+        <p>Morbi auctor non sapien in posuere. Aliquam ultrices, velit sit
+        amet condimentum placerat, sapien orci tincidunt mi, sit amet
+        sagittis arcu nisl non ante. Quisque fringilla nulla vitae fringilla
+        porttitor. Duis eget metus vel diam commodo scelerisque. Nunc
+        ullamcorper consequat mi. Sed varius turpis vel tincidunt eleifend.
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+        per inceptos himenaeos.</p>
+  template: default
+  translations:
+  - [de-AT, test]
+  - [en-UK, test]
+form: # <Flask_wtf.FlaskForm object>, only on landing_page.html
+  button: "The form fields will be faked by _macro.html for testing"
+skip_url: "https://redirect.url"  # only on landing_page.html
+iframe_url: "https://iframe.url"  # only on iframe_page.html
